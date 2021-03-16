@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:miss_mobile/views/home/modules/home_feature.dart';
 
 class Home extends StatefulWidget {
 
   static final String route = '/';
+  
+  static final String name = 'home';
 
   @override
   State<StatefulWidget> createState() => _Home();
@@ -17,7 +20,7 @@ class _Home extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _bottomPages..add(Text('首页'))..add(Text('我的'));
+    _bottomPages..add(HomeFeature())..add(Text("用户页"));
   }
 
   void _onItemTapped(int index) {
@@ -33,7 +36,6 @@ class _Home extends State<Home> {
       appBar: AppBar(
         title: Text('Miss'),
       ),
-      // body is the majority of the screen.
       body: Center(
         child: _bottomPages[_selected],
       ),
