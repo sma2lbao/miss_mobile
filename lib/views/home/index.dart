@@ -1,26 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:miss_mobile/graphql/remote/queries/home.dart';
 import 'package:miss_mobile/views/home/modules/home_feature.dart';
 
 class Home extends StatefulWidget {
-
   static final String route = '/';
-  
+
   static final String name = 'home';
 
   @override
   State<StatefulWidget> createState() => _Home();
-  
 }
 
 class _Home extends State<Home> {
-
   int _selected = 0;
   List<Widget> _bottomPages = [];
+
+  var options = QueryOptions(document: gql(currentTopic), variables: {});
 
   @override
   void initState() {
     super.initState();
-    _bottomPages..add(HomeFeature())..add(Text("用户页"));
+    _bottomPages
+      ..add(HomeFeature())
+      ..add(Text("消息页"))
+      ..add(Query(
+        options: options,
+        builder: (QueryResult result,
+            {VoidCallback refetch, FetchMore fetchMore}) {
+          if (result.hasException) {
+            return Text(result.exception.toString());
+          }
+
+          if (result.isLoading) {
+            return Text('Loading');
+          }
+
+          // it can be either Map or List
+          var topic = result.data['current_topic'];
+
+          return Text(topic['title']);
+        },
+      ));
   }
 
   void _onItemTapped(int index) {
@@ -42,14 +63,13 @@ class _Home extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: '消息'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '我的'),
         ],
         currentIndex: _selected,
         onTap: _onItemTapped,
         fixedColor: Colors.blue,
       ),
-     
     );
   }
-  
 }
