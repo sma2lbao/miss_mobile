@@ -7,13 +7,12 @@ import 'package:miss_mobile/views/public/not_found/index.dart';
 import 'package:miss_mobile/views/public/search/index.dart';
 
 void main() async {
-  await initHiveForFlutter();
   final HttpLink httpLink = HttpLink('https://sma2lbao.cn/api/graphql');
   final AuthLink authLink =
       AuthLink(getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>');
   final Link link = authLink.concat(httpLink);
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
-      GraphQLClient(link: link, cache: GraphQLCache(store: HiveStore())));
+  ValueNotifier<GraphQLClient> client =
+      ValueNotifier(GraphQLClient(link: link, cache: GraphQLCache()));
   runApp(MyApp(client));
 }
 

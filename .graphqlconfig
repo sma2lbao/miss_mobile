@@ -1,0 +1,12 @@
+{
+  "name": "Schema",
+  "schemaPath": "my.schema.json",
+  "extensions": {
+    "endpoints": {
+      "Default": {
+        "url": "https://sma2lbao.cn/api/graphql",
+        "introspect": true
+      }
+    }
+  }
+}

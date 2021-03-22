@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:miss_mobile/graphql/remote/queries/home.dart';
+// import 'package:miss_mobile/graphql/remote/queries/home.graphql';
 import 'package:miss_mobile/views/home/modules/home_feature.dart';
 
 class Home extends StatefulWidget {
@@ -16,7 +16,7 @@ class _Home extends State<Home> {
   int _selected = 0;
   List<Widget> _bottomPages = [];
 
-  var options = QueryOptions(document: gql(currentTopic), variables: {});
+  // var options = QueryOptions(document: gql(currentTopic), variables: {});
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _Home extends State<Home> {
       ..add(HomeFeature())
       ..add(Text("消息页"))
       ..add(Query(
-        options: options,
+        // options: options,
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
           if (result.hasException) {
