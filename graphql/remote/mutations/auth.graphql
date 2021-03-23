@@ -1,0 +1,20 @@
+mutation Login($username: String!, $password: String!) {
+    login(username: $username, password: $password)
+}
+
+mutation SendRegisterEmail($email: String!) {
+    send_register_email(email: $email)
+}
+
+mutation CreateUserWithCode($user: CreateUserWithCodeInput!) {
+    create_user_with_code(user: $user) {
+        username
+        avatar
+    }
+}
+
+mutation UpdateUser($user: UpdateUserInput!) {
+    update_user(user: $user) {
+        ...Me
+    }
+}

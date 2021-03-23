@@ -1,0 +1,27 @@
+query IsFollowing($owner_uid: String!, $follower_uid: String) {
+    is_following(owner_uid: $owner_uid, follower_uid: $follower_uid)
+}
+
+query User($uid: String, $username: String) {
+    user(uid: $uid, username: $username) {
+        uid
+        username
+        email
+        nickname
+        avatar
+        mobile
+        address
+        description
+        create_at
+        update_at
+        delete_at
+    }
+}
+
+query FansTotal($owner_uid: String) {
+    fans_total(owner_uid: $owner_uid)
+}
+
+query FollowsTotal($follower_uid: String) {
+    follows_total(follower_uid: $follower_uid)
+}

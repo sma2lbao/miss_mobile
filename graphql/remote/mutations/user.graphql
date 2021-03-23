@@ -1,0 +1,11 @@
+mutation CreateFollow($follow: CreateFollowInput!) {
+    create_follow(follow: $follow) {
+        create_at
+    }
+}
+
+mutation RemoveFollow($follow: DeleteFollowInput!) {
+    remove_follow(follow: $follow) {
+        create_at
+    }
+}

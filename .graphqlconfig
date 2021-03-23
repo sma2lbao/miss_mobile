@@ -1,6 +1,6 @@
 {
   "name": "Schema",
-  "schemaPath": "my.schema.json",
+  "schemaPath": "miss.schema.graphql",
   "extensions": {
     "endpoints": {
       "Default": {

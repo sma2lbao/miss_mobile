@@ -1,12 +1,25 @@
 targets:
   $default:
     sources:
-      - lib/graphql/**
-      - my.schema.json
+      - lib/**
+      - graphql/**
+      - miss.schema.graphql
+      - $package$
     builders:
       artemis:
         options:
+          scalar_mapping:
+            - graphql_type: Date
+              custom_parser_import: 'package:miss_mobile/graphql/scalars/datetime_timestamp.dart'
+              dart_type: DateTime
+          fragments_glob: graphql/remote/fragments/*.graphql
           schema_mapping:
-            - schema: my.schema.json
-              queries_glob: lib/graphql/*.graphql
-              output: lib/graphql_api.dart
+            - schema: miss.schema.graphql
+              queries_glob: graphql/remote/queries/*.graphql
+              output: lib/graphql/remote/queries/global_queries.dart
+            - schema: miss.schema.graphql
+              queries_glob: graphql/remote/mutations/*.graphql
+              output: lib/graphql/remote/mutations/global_mutations.dart
+            - schema: miss.schema.graphql
+              queries_glob: graphql/remote/subscriptions/*.graphql
+              output: lib/graphql/remote/subscriptions/global_subscriptions.dart

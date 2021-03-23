@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 
 class Personal extends StatelessWidget {
-
   static final String route = '/personal';
 
   @override
@@ -14,5 +12,4 @@ class Personal extends StatelessWidget {
       ),
     );
   }
-  
 }

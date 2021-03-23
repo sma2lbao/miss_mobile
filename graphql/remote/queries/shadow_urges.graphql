@@ -1,0 +1,8 @@
+query ShadowUrges {
+    shadow_urges {
+        ...ShadowClient
+        author {
+            ...Author
+        }
+    }
+}

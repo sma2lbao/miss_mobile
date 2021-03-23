@@ -1,0 +1,9 @@
+query UserUrges {
+    user_urges {
+        nickname
+        avatar
+        username
+        uid
+        description
+    }
+}

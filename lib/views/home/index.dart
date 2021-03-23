@@ -24,24 +24,7 @@ class _Home extends State<Home> {
     _bottomPages
       ..add(HomeFeature())
       ..add(Text("消息页"))
-      ..add(Query(
-        // options: options,
-        builder: (QueryResult result,
-            {VoidCallback refetch, FetchMore fetchMore}) {
-          if (result.hasException) {
-            return Text(result.exception.toString());
-          }
-
-          if (result.isLoading) {
-            return Text('Loading');
-          }
-
-          // it can be either Map or List
-          var topic = result.data['current_topic'];
-
-          return Text(topic['title']);
-        },
-      ));
+      ..add(Text("我的页"));
   }
 
   void _onItemTapped(int index) {

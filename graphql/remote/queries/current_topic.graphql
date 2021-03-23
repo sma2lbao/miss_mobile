@@ -1,0 +1,19 @@
+query CurrentTopic {
+    current_topic {
+        id
+        title
+        description
+        top_shadows {
+            ...ShadowClient
+            author {
+                ...Author
+            }
+        }
+        top_shadow {
+            ...ShadowClient
+            author {
+                ...Author
+            }
+        }
+    }
+}

@@ -1,0 +1,122 @@
+query Shadow($id: ID!) {
+    shadow(id: $id) {
+        credits {
+            avatar
+            name
+            description
+        }
+        author {
+            ...Author
+        }
+        alias_title
+        region
+        ...ShadowClient
+    }
+}
+
+query ShadowsPaginated($query: PaginatedQuery) {
+    shadows_paginated(query: $query) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        edges {
+            cursor
+            node {
+                ...ShadowClient
+                author {
+                    ...Author
+                }
+            }
+        }
+    }
+}
+
+query UserShadowsPaginated(
+    $author_username: String!
+    $query: PaginatedQuery
+) {
+    user_shadows_paginated(author_username: $author_username, query: $query) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        edges {
+            cursor
+            node {
+                ...ShadowClient
+                author {
+                    ...Author
+                }
+            }
+        }
+    }
+}
+
+query ShadowUrgesByShadow($shadow_id: ID!) {
+    shadow_urges_by_shadow(shadow_id: $shadow_id) {
+        ...ShadowClient
+        author {
+            ...Author
+        }
+    }
+}
+
+query ShadowNextUrgesByShadow($shadow_id: ID!) {
+    shadow_next_urges_by_shadow(shadow_id: $shadow_id) {
+        ...ShadowClient
+        author {
+            ...Author
+        }
+    }
+}
+
+query ReviewsPaginated(
+    $type: ReviewMedium
+    $type_id: ID
+    $query: PaginatedQuery
+) {
+    reviews_paginated(type: $type, type_id: $type_id, query: $query) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        edges {
+            cursor
+            node {
+                ...ReviewClient
+                author {
+                    ...Author
+                }
+            }
+        }
+    }
+}
+
+query SearchShadowsPaginated($word: String, $query: PaginatedQuery) {
+    search_shadows_paginated(word: $word, query: $query) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        edges {
+            cursor
+            node {
+                ...ShadowClient
+                author {
+                    ...Author
+                }
+            }
+        }
+    }
+}
+
+query vote($medium_id: ID!) {
+    vote(medium_id: $medium_id) {
+        status
+    }
+}

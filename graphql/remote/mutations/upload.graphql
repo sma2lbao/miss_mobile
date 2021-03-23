@@ -1,0 +1,3 @@
+#mutation uploadFileOss($file: Upload!) {
+#    upload_file_oss(file: $file)
+#}

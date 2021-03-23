@@ -1,0 +1,16 @@
+query PlatformAuthWay {
+    platform_auth_way {
+        platform
+        url
+    }
+}
+
+query HasUsername($username: String!) {
+    has_username(username: $username)
+}
+
+query Me {
+    me {
+        ...Me
+    }
+}

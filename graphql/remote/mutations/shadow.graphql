@@ -1,0 +1,37 @@
+mutation CreateShadow($shadow: CreateShadowInput!) {
+    create_shadow(shadow: $shadow) {
+        create_at
+    }
+}
+
+mutation UpdateShadow($shadow: UpdateShadowInput!, $shadow_id: ID!) {
+    update_shadow(shadow_id: $shadow_id, shadow: $shadow) {
+        create_at
+    }
+}
+
+mutation AddMediumsToShadow(
+    $shadow_id: ID!
+    $shadow_medium: CreateShadowMediumInput!
+) {
+    add_mediums_to_shadow(
+        shadow_id: $shadow_id
+        shadow_medium: $shadow_medium
+    ) {
+        sources {
+            name
+        }
+    }
+}
+
+mutation CreateOrUpdateVote($vote: CreateVoteInput!) {
+    create_or_update_vote(vote: $vote) {
+        status
+    }
+}
+
+mutation CreateReview($review: CreateReviewInput!) {
+    create_review(review: $review) {
+        id
+    }
+}

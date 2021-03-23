@@ -1,0 +1,8 @@
+subscription reviewCreated($type: ReviewMedium!, $type_id: ID!) {
+    review_created(type: $type, type_id: $type_id) {
+        ...ReviewClient
+        author {
+            ...Author
+        }
+    }
+}

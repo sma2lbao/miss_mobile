@@ -10,7 +10,7 @@ class HomeFeature extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          HomeTopic(),
+          // HomeTopic(),
           Expanded(child: HomeRecommend())
         ]
       ),
