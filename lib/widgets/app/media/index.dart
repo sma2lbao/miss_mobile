@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:miss_mobile/entities/user.entity.dart';
+import 'package:miss_mobile/graphql/remote/queries/global_queries.dart';
 
 class Media extends StatefulWidget {
   static final String name = 'media';
+
+  final String id;
+
+  final String cover;
+
+  final String title;
+
+  final String sub_title;
+
+  final DateTime create_at;
+
+  final User author;
+
+  const Media(
+      {Key key,
+      this.id,
+      this.cover,
+      this.title,
+      this.sub_title,
+      this.create_at,
+      this.author})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _Media();
@@ -19,20 +44,13 @@ class _Media extends State<Media> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'))),
+                      fit: BoxFit.cover, image: NetworkImage(widget.cover))),
               child: Stack(
                 children: [
-                  // SizedBox.expand(
-                  //     child: Image(
-                  //   fit: BoxFit.cover,
-                  //   image: NetworkImage(
-                  //       'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                  // )),
                   Center(
                     child: IconButton(
-                        icon: Icon(Icons.play_arrow_outlined),
+                        iconSize: 32,
+                        icon: Icon(Icons.play_circle_fill_outlined),
                         onPressed: () {}),
                   )
                 ],
@@ -48,17 +66,25 @@ class _Media extends State<Media> {
                     children: [
                       CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage(
-                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')),
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text('姓名', textAlign: TextAlign.start),
-                            Text('上传时间', textAlign: TextAlign.start)
-                          ])
+                          backgroundImage: NetworkImage(widget.author.avatar)),
+                      Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.author.nickname,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: 16, fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(widget.create_at),
+                                    textAlign: TextAlign.start)
+                              ]))
                     ],
                   )),
-                  IconButton(icon: Icon(Icons.edit))
+                  IconButton(icon: Icon(Icons.more_vert))
                 ]))
       ],
     );
