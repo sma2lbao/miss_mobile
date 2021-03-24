@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:miss_mobile/entities/user.entity.dart';
-import 'package:miss_mobile/graphql/remote/queries/global_queries.dart';
 
 class Media extends StatefulWidget {
   static final String name = 'media';
@@ -18,6 +17,8 @@ class Media extends StatefulWidget {
 
   final User author;
 
+  final playCallback;
+
   const Media(
       {Key key,
       this.id,
@@ -25,7 +26,8 @@ class Media extends StatefulWidget {
       this.title,
       this.sub_title,
       this.create_at,
-      this.author})
+      this.author,
+      this.playCallback})
       : super(key: key);
 
   @override
@@ -51,7 +53,9 @@ class _Media extends State<Media> {
                     child: IconButton(
                         iconSize: 32,
                         icon: Icon(Icons.play_circle_fill_outlined),
-                        onPressed: () {}),
+                        onPressed: () {
+                          widget.playCallback(widget.id);
+                        }),
                   )
                 ],
               ),
@@ -76,10 +80,13 @@ class _Media extends State<Media> {
                                   widget.author.nickname,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(widget.create_at),
+                                Text(
+                                    DateFormat('yyyy-MM-dd HH:mm:ss')
+                                        .format(widget.create_at),
                                     textAlign: TextAlign.start)
                               ]))
                     ],

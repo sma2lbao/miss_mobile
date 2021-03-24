@@ -4,6 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:miss_mobile/entities/user.entity.dart';
 import 'package:miss_mobile/graphql/remote/queries/global_queries.dart';
 import 'package:miss_mobile/widgets/app/media/index.dart';
+import 'package:miss_mobile/views/shadows/shadow/index.dart';
 
 class HomeRecommend extends StatefulWidget {
   @override
@@ -36,6 +37,9 @@ class _HomeRecommend extends State<HomeRecommend> {
               cover: shadow.cover,
               create_at: shadow.createAt,
               author: User.fromJson(shadow.author.toJson()),
+              playCallback: (id) {
+                Navigator.of(context).pushNamed(Shadow.route);
+              },
             );
           },
           itemCount: shadow_urges.length,

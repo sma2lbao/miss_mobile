@@ -5,6 +5,7 @@ import 'package:miss_mobile/views/home/index.dart';
 import 'package:miss_mobile/views/public/forbidden/index.dart';
 import 'package:miss_mobile/views/public/not_found/index.dart';
 import 'package:miss_mobile/views/public/search/index.dart';
+import 'package:miss_mobile/views/shadows/shadow/index.dart';
 
 void main() async {
   final HttpLink httpLink = HttpLink('https://sma2lbao.cn/api/graphql');
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             Home.route: (ctx) => Home(),
+            Shadow.route: (ctx) => Shadow(),
             Search.route: (ctx) => Search(),
             Login.route: (ctx) => Login(),
             Forbidden.route: (ctx) => Forbidden(),
