@@ -38,7 +38,8 @@ class _HomeRecommend extends State<HomeRecommend> {
               create_at: shadow.createAt,
               author: User.fromJson(shadow.author.toJson()),
               playCallback: (id) {
-                Navigator.of(context).pushNamed(Shadow.route);
+                Navigator.of(context)
+                    .pushNamed(Shadow.route, arguments: {'id': id});
               },
             );
           },

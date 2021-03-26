@@ -39,6 +39,9 @@ class _Media extends State<Media> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          child: Text(widget.title),
+        ),
         AspectRatio(
             aspectRatio: 16 / 9,
             child: Container(
@@ -92,7 +95,7 @@ class _Media extends State<Media> {
                     ],
                   )),
                   IconButton(icon: Icon(Icons.more_vert))
-                ]))
+                ])),
       ],
     );
   }
